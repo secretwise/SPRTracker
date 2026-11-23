@@ -1,0 +1,187 @@
+# spr tracker
+# алерты для модеров + дискорд
+# цвета: &#RRGGBB или обычные &7 &f
+# релоуд: /tracker reload
+
+general:
+  # не показывать модеру его же алерты (вебхук всё равно уйдёт)
+  ignore-self: false
+  # миры, где трекер молчит
+  disabled-worlds: []
+  # дублировать в консоль
+  console: true
+  # сколько последних алертов держать для /tracker history
+  history-size: 50
+  time-format: "HH:mm:ss"
+
+display:
+  chat: true
+  actionbar: false
+  # координаты в сообщении кликабельные, копируются в буфер
+  copy-coords: true
+  coords-format: "%world% %x% %y% %z%"
+  # что попадёт в буфер при клике
+  coords-copy-format: "%world% %x% %y% %z%"
+  coords-hover: "&7нажми, чтобы скопировать"
+  sound:
+    enabled: true
+    name: "ui.button.click"
+    volume: 0.8
+    pitch: 1.4
+  title:
+    enabled: false
+    title: "&#F34242▶ &f%type% &#F34242◀"
+    subtitle: "&f%player%"
+    fade-in: 0
+    stay: 20
+    fade-out: 10
+
+alerts:
+  totem:
+    enabled: true
+    # сек между алертами по одному игроку, 0 = без кулдауна
+    cooldown-seconds: 0
+    message: "&#F34242▶ &f%player% &7попнул тотем &8(&f%totems%&8, &7от &f%damager%&8, &f%weapon%&8, &7%cause%&8) &7%coords%"
+    webhook: true
+  crystal:
+    enabled: true
+    cooldown-seconds: 0
+    message: "&#F34242▶ &f%player% &7взорвал кристалл &8(&f%victims%&8: &f%victim_list%&8) &7%coords%"
+    webhook: true
+    # только кристаллы, поставленные игроком
+    only-player-placed: true
+    # радиус поиска задетых
+    radius: 6.0
+  kill:
+    enabled: true
+    cooldown-seconds: 0
+    message: "&#F34242▶ &f%killer% &7убил &f%player% &8(&f%weapon%&8, &7%cause%&8, &f%distance%&7м&8, &7хп &f%killer_health%&8) &7%coords%"
+    webhook: true
+
+combat:
+  # сколько секунд после удара смерть ещё считается его киллом
+  window-seconds: 15
+  # огонь, лава, падение, ветер и прочее окружение засчитывать тому, кто ударил
+  attribute-environmental: true
+  # какие причины смерти так засчитываются
+  environmental-causes:
+    - fall
+    - in_fire
+    - on_fire
+    - fire_tick
+    - lava
+    - hot_floor
+    - campfire
+    - explosion
+    - player_explosion
+    - wind_charge
+    - fly_into_wall
+    - drown
+    - out_of_world
+    - cactus
+    - sweet_berry_bush
+    - freeze
+    - lightning_bolt
+    - falling_block
+    - falling_anvil
+    - falling_stalactite
+
+webhook:
+  enabled: false
+  url: ""
+  username: "spr tracker"
+  avatar-url: ""
+  server-name: "spr"
+  footer: "sprtracker · %server%"
+  # пауза между сообщениями, discord не любит спам
+  interval-ms: 1200
+  timeout-ms: 5000
+  embed:
+    totem:
+      title: "тотем"
+      color: "#F34242"
+      description: "`%player%` попнул тотем. осталось %totems%, за жизнь %pops%. от %damager%. %world% %x% %y% %z%."
+    crystal:
+      title: "кристалл"
+      color: "#9B59B6"
+      description: "`%player%` взорвал кристалл в %world% %x% %y% %z%. зацепило %victims%."
+    kill:
+      title: "килл"
+      color: "#C0392B"
+      description: "`%killer%` убил `%player%`. %weapon%, %cause%, %distance% бл. хп у киллера %killer_health%. ассисты: %assists%. %world% %x% %y% %z%."
+
+messages:
+  prefix: "&#F34242▶ &f"
+  no-perm: "&cнет прав."
+  player-only: "&cтолько для игрока."
+  unknown-command: "&cнет такой команды. &7/tracker help"
+  unknown-type: "&cнет такого типа. &7totem, crystal, kill"
+  unknown-player: "кто-то"
+  causes:
+    player_attack: "удар"
+    player_explosion: "взрыв"
+    explosion: "взрыв"
+    in_fire: "огонь"
+    on_fire: "огонь"
+    fire_tick: "огонь"
+    lava: "лава"
+    hot_floor: "магма"
+    campfire: "костёр"
+    fireball: "фаербол"
+    fireworks: "фейерверк"
+    fall: "падение"
+    fly_into_wall: "кинетика"
+    wind_charge: "ветер"
+    mace_smash: "булава"
+    arrow: "стрела"
+    trident: "трезубец"
+    magic: "магия"
+    indirect_magic: "магия"
+    thorns: "шипы"
+    sonic_boom: "соник"
+    sting: "пчела"
+    cactus: "кактус"
+    sweet_berry_bush: "кусты"
+    freeze: "заморозка"
+    lightning_bolt: "молния"
+    falling_block: "блок"
+    falling_anvil: "наковальня"
+    falling_stalactite: "сталактит"
+    drown: "утопление"
+    out_of_world: "пустота"
+    void: "пустота"
+    starve: "голод"
+    wither: "визер"
+    unknown: "?"
+  reloaded: "&fконфиг перезагружен за &f%ms%&7 мс."
+  alerts-on: "&fалерты &aвкл&f."
+  alerts-off: "&fалерты &cвыкл&f."
+  type-on: "&f%type%&7: &aвкл&f."
+  type-off: "&f%type%&7: &cвыкл&f."
+  sound-on: "&fзвук &aвкл&f."
+  sound-off: "&fзвук &cвыкл&f."
+  actionbar-on: "&factionbar &aвкл&f."
+  actionbar-off: "&factionbar &cвыкл&f."
+  history-empty: "&7пусто."
+  history-header: "&fпоследние &f%n%&7:"
+  test-sent: "&fтест &f%type%&7 отправлен."
+  webhook-on: "&fвебхук &aвкл&f."
+  webhook-off: "&fвебхук &cвыкл&f."
+  webhook-no-url: "&curl не задан, некуда слать."
+  webhook-status: "&fвебхук: %state% &8(%url%&8)"
+  status:
+    - "&#F34242▶ &fтрекер"
+    - " &8▪ &7алерты: %alerts%"
+    - " &8▪ &7тотем: %totem% &8| &7кристалл: %crystal% &8| &7килл: %kill%"
+    - " &8▪ &7звук: %sound% &8| &7actionbar: %actionbar%"
+    - " &8▪ &7вебхук: %webhook% &8(%webhook_url%&8)"
+    - " &8▪ &7история: &f%history%"
+  help:
+    - "&#F34242▶ &fтрекер &8— команды"
+    - " &8▪ &f/tracker alerts &7[тип] &8— вкл/выкл алерты"
+    - " &8▪ &f/tracker sound &8— звук"
+    - " &8▪ &f/tracker actionbar &8— actionbar"
+    - " &8▪ &f/tracker history &7[кол-во] &8— последние алерты"
+    - " &8▪ &f/tracker test &7[тип] &8— тестовый алерт"
+    - " &8▪ &f/tracker webhook &7[on|off|test] &8— вебхук"
+    - " &8▪ &f/tracker reload &8— релоуд конфига"

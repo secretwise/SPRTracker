@@ -1,0 +1,25 @@
+name: SPRTracker
+version: 1.0.0
+main: dev.wise.sprtracker.SPRTracker
+api-version: '1.21'
+authors: [wise]
+description: totem/crystal/kill alerts for staff
+commands:
+  tracker:
+    description: spr tracker
+    usage: /tracker help
+    aliases: [sprtracker, tr]
+    permission: tracker.use
+permissions:
+  tracker.use:
+    description: base command
+    default: op
+  tracker.alerts:
+    description: receive alerts and toggle own
+    default: op
+  tracker.history:
+    description: view alert history
+    default: op
+  tracker.admin:
+    description: reload, test, webhook
+    default: op
